@@ -18,6 +18,7 @@ $hoe = Hoe.spec 'arguments' do
     ['ParseTree',   '>= 3.0.3'],
     ['ruby2ruby',    '= 1.1.9']
   ]
+  self.homepage = 'http://github.com/maca/arguments'
 end
 
 require 'newgem/tasks'
