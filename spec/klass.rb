@@ -18,6 +18,11 @@ class Klass
   def asr attackTime = 3, sustainLevel = 2, releaseTime = 1, curve = 0
     [attackTime, sustainLevel, releaseTime, curve]
   end
+
+  @@go = 3
+  def defaults_with_class b = 1, a = @@go
+    a
+  end
   
   def no_args
   end
