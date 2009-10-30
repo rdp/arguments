@@ -12,7 +12,7 @@ module Arguments
       else
         klass = self
       end
-      names   = Arguments.names klass, meth
+      names = Arguments.names klass, meth, am_self
       next if names.empty? or names.inject(false) { |bol, pair| bol || /^\*/ === pair.first.to_s }
       assigns = []
       names.pop if /^&/ === names[-1][0].to_s

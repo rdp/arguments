@@ -1,5 +1,5 @@
 require "#{ dir = File.dirname __FILE__ }/../lib/arguments"
-$DEBUG = 1
+#$DEBUG = 1
 require 'benchmark'
 
 # TODO: Refactor specs for clarity and better coverage
@@ -50,8 +50,8 @@ describe Arguments do
 
   it "should allow for class arguments in class methods" do
     Klass.send( :named_arguments_for, :'self.klass_defaults_with_class')
-    Klass.klass_defaults_with_class(1, 3).should == 3
-    Klass.klass_defaults_with_class(:a => 3).should == 3
+    Klass.klass_defaults_with_class(1, 4).should == 4
+    Klass.klass_defaults_with_class(:a => 4).should == 4
     Klass.klass_defaults_with_class().should == 3
   end
 
