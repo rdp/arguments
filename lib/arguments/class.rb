@@ -38,7 +38,7 @@ module Arguments
         end
       end
 
-
+      file = __FILE__
       it = <<-RUBY_EVAL, __FILE__, __LINE__
         #{ "class << self" if am_self } 
         def __#{ meth }_with_keyword_arguments *args, &block
@@ -54,6 +54,16 @@ module Arguments
         alias #{ meth } __#{ meth }_with_keyword_arguments
         #{ "end" if am_self }
       RUBY_EVAL
+      if $DEBUG
+        code, file, line = *it
+        file = "cached_methods/#{meth}"
+        line = 1
+        Dir.mkdir 'cached_methods' rescue nil
+        File.open(file, 'w') do |f|
+          f.write code
+        end
+        it = [code, file, line]
+      end   
       original_klass.class_eval *it
     end
   end

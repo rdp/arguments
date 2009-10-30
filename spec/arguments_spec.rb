@@ -1,4 +1,5 @@
 require "#{ dir = File.dirname __FILE__ }/../lib/arguments"
+$DEBUG = 1
 require 'benchmark'
 
 # TODO: Refactor specs for clarity and better coverage
