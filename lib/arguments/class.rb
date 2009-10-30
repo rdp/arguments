@@ -4,7 +4,14 @@ module Arguments
         
     methods.each do |meth|
       meth    = meth.to_s
-      klass   = meth.sub!(/^self./, '') ? (class << self; self; end) : self
+      original_klass = self
+      if meth =~ /^self\./
+        am_self = true
+        klass = (class << self; self; end)
+        meth.sub!(/^self\./ , '')
+      else
+        klass = self
+      end
       names   = Arguments.names klass, meth
       next if names.empty? or names.inject(false) { |bol, pair| bol || /^\*/ === pair.first.to_s }
       assigns = []
@@ -31,7 +38,9 @@ module Arguments
         end
       end
 
-      klass.module_eval <<-RUBY_EVAL, __FILE__, __LINE__
+
+      it = <<-RUBY_EVAL, __FILE__, __LINE__
+        #{ "class << self" if am_self } 
         def __#{ meth }_with_keyword_arguments *args, &block
           opts = args.last.kind_of?( Hash ) && args.size < #{ names.size } ? args.pop : {}
           #{ assigns.join("\n") }
@@ -40,10 +49,12 @@ module Arguments
           end
           __original_#{ meth } #{ names.collect{ |n| n.first }.join(', ') }, &block
         end
-        
+
         alias __original_#{ meth } #{ meth }
         alias #{ meth } __#{ meth }_with_keyword_arguments
+        #{ "end" if am_self }
       RUBY_EVAL
+      original_klass.class_eval *it
     end
   end
   alias :named_args_for :named_arguments_for
@@ -53,6 +64,7 @@ end
 class Class
   include Arguments
 end
+
 class Module
   include Arguments
 end
