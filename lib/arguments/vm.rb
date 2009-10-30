@@ -20,7 +20,7 @@ module Arguments
     for str in strs
       ast = PermissiveRubyParser.new.parse( str )
       if ast
-        return ast.assoc( :defn ) or ast
+        return (ast.assoc( :defn ) or ast)
       end
     end
     raise 'unable to parse method' + klass.to_s + method
