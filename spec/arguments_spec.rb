@@ -151,7 +151,7 @@ describe Arguments do
     }
   end
 
-  it "should work with modules" do
+  it "should work with modules (not working yet)" do
      require 'module.rb'
      TestMod.send(:named_arguments_for, :go)
      IncludesTestMod.new.go(1,2).should == 2
