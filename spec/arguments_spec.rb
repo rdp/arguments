@@ -1,7 +1,6 @@
-require "#{ dir = File.dirname __FILE__ }/../lib/arguments"
-#$DEBUG = 1
+require 'rubygems'
 require 'benchmark'
-
+require "#{ dir = File.dirname __FILE__ }/../lib/arguments"
 # TODO: Refactor specs for clarity and better coverage
 describe Arguments do
 
@@ -166,6 +165,13 @@ describe Arguments do
     @instance.method(:no_opts).arity.should == 3
   end
   
+  it "should handle named blocks" do
+    @instance.with_block3(3, 3).should==3
+    Klass.send(:named_args, :with_block3)
+    @instance.with_block3(3, nil, 4).should==4
+    @instance.with_block3(3).should==3
+  end
+
   it "should patch all methods" do
     Klass.send( :named_args )
     @instance.two(1, :three => 3).should == [1, 2, 3]
@@ -196,4 +202,6 @@ describe Arguments do
       end
     }
   end
+
+
 end
