@@ -38,7 +38,6 @@ module Arguments
         end
       end
 
-      file = __FILE__
       it = <<-RUBY_EVAL, __FILE__, __LINE__
         #{ "class << self" if am_self } 
         def __#{ meth }_with_keyword_arguments *args, &block
@@ -62,7 +61,7 @@ module Arguments
         File.open(file, 'w') do |f|
           f.write code
         end
-        it = [code, file, line]
+        it = [code, file, 1]
       end   
       original_klass.class_eval *it
     end
