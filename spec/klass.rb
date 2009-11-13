@@ -36,6 +36,12 @@ class Klass
     d
   end
 
+  class << self
+    def klass_method3 a, b = 2
+      b
+    end
+  end
+
   def with_block3( value, round_id = nil, this_many_repeats_left = 3, &block)
     this_many_repeats_left
   end
