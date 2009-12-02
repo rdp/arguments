@@ -13,8 +13,13 @@ module Arguments
     args = ast_for_method(klass, method, am_self).assoc(:args)
     args = args[1..-1]
     
-    return [] if args.empty? or args.last.is_a?(Symbol)
-    vals = args.pop[1..-1]
+    return [] if args.empty?# or args.last.is_a?(Symbol)
+    if args.last.is_a?(Symbol)
+     # no optionals, so don't pop them off the list
+     vals = []
+    else
+     vals = args.pop[1..-1]
+    end
 
     args.collect do |arg|
       if val = vals.find{ |v| v[1] == arg }

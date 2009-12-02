@@ -167,9 +167,9 @@ describe Arguments do
     @instance.splatted4(1, :b => 2, :args => 1).should == [1, {:b => 2, :args => 1}, []]
   end
   
-  it "should not patch methods with no optionals" do
+  it "should patch methods with no optionals" do
     Klass.send( :named_arguments_for, :no_opts )
-    @instance.method(:no_opts).arity.should == 3
+    @instance.method(:no_opts).arity.should == -1
   end
   
   it "should handle named blocks" do
