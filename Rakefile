@@ -17,7 +17,7 @@ $hoe = Hoe.spec 'rdp-arguments' do
   self.extra_deps = [
     ['ruby_parser', '>= 2.0.2'],
     ['ParseTree',   '>= 3.0.3'],
-    ['ruby2ruby',    '= 1.1.9']
+    ['ruby2ruby']
   ]
 end
 
