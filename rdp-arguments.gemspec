@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rdp-arguments}
-  s.version = "0.6.2"
+  s.version = "0.6.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Macario Ortega, rogerdpack"]
@@ -26,18 +26,18 @@ Arguments has been tested with Ruby 1.8.6 and ruby 1.9.1 and eventually will wor
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<ruby_parser>, [">= 2.0.2"])
       s.add_runtime_dependency(%q<ParseTree>, [">= 3.0.3"])
-      s.add_runtime_dependency(%q<ruby2ruby>, ["= 1.1.9"])
+      s.add_runtime_dependency(%q<ruby2ruby>)
       s.add_development_dependency(%q<hoe>, [">= 2.3.3"])
     else
       s.add_dependency(%q<ruby_parser>, [">= 2.0.2"])
       s.add_dependency(%q<ParseTree>, [">= 3.0.3"])
-      s.add_dependency(%q<ruby2ruby>, ["= 1.1.9"])
+      s.add_dependency(%q<ruby2ruby>)
       s.add_dependency(%q<hoe>, [">= 2.3.3"])
     end
   else
     s.add_dependency(%q<ruby_parser>, [">= 2.0.2"])
     s.add_dependency(%q<ParseTree>, [">= 3.0.3"])
-    s.add_dependency(%q<ruby2ruby>, ["= 1.1.9"])
+    s.add_dependency(%q<ruby2ruby>)
     s.add_dependency(%q<hoe>, [">= 2.3.3"])
   end
 end
