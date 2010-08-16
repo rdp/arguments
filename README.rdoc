@@ -76,7 +76,7 @@ Ruby 1.9.1
 
 == INSTALL:
 
-    sudo gem install maca-arguments –source http://gems.github.com
+    sudo gem install rdp-arguments
 
 == LATEST CHANGES (0.6)
 
